@@ -7,13 +7,25 @@
     android:layout_height="match_parent"
     tools:context="com.example.root.conferencert.Conferencert">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="@+id/activity_conferencert"
-        app:layout_constraintLeft_toLeftOf="@+id/activity_conferencert"
-        app:layout_constraintRight_toRightOf="@+id/activity_conferencert"
-        app:layout_constraintTop_toTopOf="@+id/activity_conferencert" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pressione o botão para organizar a conferência"
+            android:gravity="center"
+            android:textSize="24dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Organizar"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

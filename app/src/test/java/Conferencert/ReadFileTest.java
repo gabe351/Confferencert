@@ -28,10 +28,10 @@ public class ReadFileTest {
         lista.add("Reinventando a roda em ASP clássico 45min");
         assertEquals(result, lista);
     }
-
+    
     @Test
     public void failReadingFile() throws FileNotFoundException{
-        InputStream file = new FileInputStream("src/test/res/proposals.txt");
+        InputStream file = new FileInputStream("src/test/res/proposalsNull.txt");
 
         ReadFile openFile = new ReadFile();
         List<String> result = openFile.read(file);

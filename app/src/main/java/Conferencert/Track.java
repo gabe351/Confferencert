@@ -7,8 +7,10 @@ import java.util.List;
  * Created by root on 23/06/16.
  */
 public class Track {
-    public final static Integer MORNING_LIMIT = 120;
+    public final static Integer MORNING_LIMIT = 180;
     public final static Integer AFTERNOON_LIMIT = 239;
+
+
 
     private List<Lecture> lectures = new ArrayList<Lecture>();
     private final Integer limit;
@@ -18,21 +20,26 @@ public class Track {
     }
 
     public Integer sumLecturesTimes(Lecture lecture){
-
-        Integer totalTimes = lecture.getTimeInt(lecture.getTimeStr()) + lecture.getTimeInt(lecture.getTimeStr());
+        Integer totalTimes = 0;
+        totalTimes += lecture.getTimeInt();
+        for (Lecture l : lectures) {
+            totalTimes += l.getTimeInt();
+        }
 
         return totalTimes;
     }
 
-    public Boolean adicionarPalestra(Lecture lecture) {
-        if (sumLecturesTimes(lecture)> MORNING_LIMIT){
-
+    public Boolean addLecture(Lecture lecture) {
+        if(sumLecturesTimes(lecture) <= limit){
+            lectures.add(lecture);
+            return true;
         }
-        return null;
-    }
 
+        return false;
+    }
 
     public List<Lecture> getLectures() {
         return lectures;
     }
+
 }

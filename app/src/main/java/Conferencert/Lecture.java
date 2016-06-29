@@ -21,9 +21,9 @@ public class Lecture {
         return timeStr;
     }
 
-    public Integer getTimeInt(String timeStr) {
+    public Integer getTimeInt() {
 
-        String numberTime = timeStr.replace("min", "");
+        String numberTime = getTimeStr().replace("min", "");
         Integer timeInt = Integer.parseInt(numberTime);
 
         return timeInt;
