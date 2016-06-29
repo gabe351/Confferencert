@@ -13,7 +13,7 @@ public class LectureTest {
     public void parseIntTime(){
 
         Lecture lecture = new Lecture("palestra de ruby", "60min");
-        int timeInt = lecture.getTimeInt(lecture.getTimeStr());
+        int timeInt = lecture.getTimeInt();
 
         assertEquals(60, timeInt);
     }

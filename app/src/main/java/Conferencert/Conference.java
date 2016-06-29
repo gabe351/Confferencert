@@ -8,11 +8,12 @@ import java.util.List;
  */
 public class Conference {
     private final List<Lecture> lectures;
+    List<Lecture> standby = new ArrayList<>();
 
-    Track trackADia1 = new Track(Track.MORNING_LIMIT);
-    Track trackBDia1 = new Track(Track.AFTERNOON_LIMIT);
-    Track trackADia2 = new Track(Track.MORNING_LIMIT);
-    Track trackBDia2 = new Track(Track.AFTERNOON_LIMIT);
+    Track trackMorningA = new Track(Track.MORNING_LIMIT);
+    Track trackAfternoonA = new Track(Track.AFTERNOON_LIMIT);
+    Track TrackMorningB = new Track(Track.MORNING_LIMIT);
+    Track trackAftenoonB = new Track(Track.AFTERNOON_LIMIT);
 
 
 
@@ -23,8 +24,12 @@ public class Conference {
     public void buildTracks() {
         for (Lecture l : lectures) {
             Boolean add = false;
-            add = trackADia1.addLecture(l);
+            add = trackMorningGIA.addLecture(l);
+            if (trackMorningA.sumLecturesTimes(l)> Track.MORNING_LIMIT){
+                standby.add(l);
+            }
         }
 
     }
 }
+
