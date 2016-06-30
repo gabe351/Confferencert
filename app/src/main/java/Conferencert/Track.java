@@ -29,6 +29,7 @@ public class Track {
         return totalTimes;
     }
 
+
     public Boolean addLecture(Lecture lecture) {
         if(sumLecturesTimes(lecture) <= limit){
             lectures.add(lecture);
@@ -42,4 +43,13 @@ public class Track {
         return lectures;
     }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Track o) {
+        return 
+    }
 }

@@ -72,4 +72,5 @@ public class TracksTest {
 
         assertEquals(lecturesAdded, trackManha.getLectures());
     }
+
 }

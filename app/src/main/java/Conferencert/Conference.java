@@ -1,5 +1,8 @@
 package Conferencert;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +12,7 @@ import java.util.List;
 public class Conference {
     private final List<Lecture> lectures;
     List<Lecture> standby = new ArrayList<>();
+    List<String> lecturesFromA = new ArrayList<>();
 
     Track trackMorningA = new Track(Track.MORNING_LIMIT);
     Track trackAfternoonA = new Track(Track.AFTERNOON_LIMIT);
@@ -20,14 +24,21 @@ public class Conference {
     public Conference(List<Lecture> lectures) {
         this.lectures = lectures;
     }
+    public void buildTracks(Lecture lecture) throws FileNotFoundException {
 
+        InputStream file = new FileInputStream("src/test/res/proposals.txt");
+        ReadFile openFile = new ReadFile();
+        List<String> results = openFile.read(file);
+
+
+    }
     public void buildTracks() {
         for (Lecture l : lectures) {
             Boolean add = false;
-            add = trackMorningGIA.addLecture(l);
-            if (trackMorningA.sumLecturesTimes(l)> Track.MORNING_LIMIT){
-                standby.add(l);
-            }
+            add = trackMorningA.addLecture(l);
+//            if (trackMorningA.sumLecturesTimes(l)> Track.MORNING_LIMIT){
+//                standby.add(l);
+//            }
         }
 
     }
