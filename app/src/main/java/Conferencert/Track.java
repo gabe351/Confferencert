@@ -19,6 +19,11 @@ public class Track {
         this.limit = limit;
     }
 
+    public void getLecturesTitle(){
+        for (Lecture l : lectures){
+            l.getTitle();
+        }
+    }
     public Integer sumLecturesTimes(Lecture lecture){
         Integer totalTimes = 0;
         totalTimes += lecture.getTimeInt();
@@ -49,7 +54,18 @@ public class Track {
     }
 
     @Override
-    public boolean equals(Track o) {
-        return 
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Track track = (Track) o;
+
+        if (!lectures.equals(track.lectures)) return false;
+        return limit.equals(track.limit);
+
     }
+//    //tirei o @Override daqui e ele passou no teste...
+//    public boolean equals(Track o) {
+//        o.getLecturesTitle();
+//        return true;
+//    }
 }

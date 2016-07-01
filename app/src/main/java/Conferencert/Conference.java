@@ -4,43 +4,58 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by root on 29/06/16.
  */
 public class Conference {
     private final List<Lecture> lectures;
-    List<Lecture> standby = new ArrayList<>();
-    List<String> lecturesFromA = new ArrayList<>();
+    private Map<Integer, Track> map = new HashMap<Integer, Track>();
 
-    Track trackMorningA = new Track(Track.MORNING_LIMIT);
-    Track trackAfternoonA = new Track(Track.AFTERNOON_LIMIT);
-    Track TrackMorningB = new Track(Track.MORNING_LIMIT);
-    Track trackAftenoonB = new Track(Track.AFTERNOON_LIMIT);
-
-
+    private static final Integer TRACK_MORNING_A   = 0;
+    private static final Integer TRACK_AFTERNOON_A = 1;
+    private static final Integer TRACK_MORNING_B   = 2;
+    private static final Integer TRACK_AFTERNOON_B = 3;
 
     public Conference(List<Lecture> lectures) {
         this.lectures = lectures;
+
+        map.put(TRACK_MORNING_A,   new Track(Track.MORNING_LIMIT));
+        map.put(TRACK_AFTERNOON_A, new Track(Track.AFTERNOON_LIMIT));
+        map.put(TRACK_MORNING_B,   new Track(Track.MORNING_LIMIT));
+        map.put(TRACK_AFTERNOON_B, new Track(Track.AFTERNOON_LIMIT));
     }
-    public void buildTracks(Lecture lecture) throws FileNotFoundException {
 
-        InputStream file = new FileInputStream("src/test/res/proposals.txt");
-        ReadFile openFile = new ReadFile();
-        List<String> results = openFile.read(file);
-
-
-    }
     public void buildTracks() {
+
+        buildTrack(TRACK_MORNING_A, lectures);
+    }
+
+    private void buildTrack(Integer nextTrackKey, List<Lecture> lectures) {
+        List<Lecture> standby = new ArrayList<Lecture>();
+
         for (Lecture l : lectures) {
-            Boolean add = false;
-            add = trackMorningA.addLecture(l);
-//            if (trackMorningA.sumLecturesTimes(l)> Track.MORNING_LIMIT){
-//                standby.add(l);
-//            }
+            Boolean added = map.get(nextTrackKey).addLecture(l);
+            if (!added) {
+                standby.add(l);
+            }
         }
 
+        if (!standby.isEmpty()) {
+            buildTrack(nextTrackKey + 1, standby);
+        }
+
+    }
+
+    public Track getTrackMorningA() {
+        return map.get(TRACK_MORNING_A);
+    }
+
+    public Track getTrackMorningB() {
+        return map.get(TRACK_MORNING_B);
     }
 }
 

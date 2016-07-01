@@ -16,59 +16,76 @@ import static junit.framework.Assert.*;
 
 public class ConferenceTest {
 
-    @Test
-    public void buildTracks(){
-        List<Lecture> lectures = new ArrayList<Lecture>();
-        lectures.add(new Lecture("Ruby 1", "60min"));
-        lectures.add(new Lecture("Ruby 2", "60min"));
-        lectures.add(new Lecture("Ruby 3", "60min"));
+//    @Test
+//    public void buildTracks(){
+//        List<Lecture> lectures = new ArrayList<Lecture>();
+//        lectures.add(new Lecture("Ruby 1", "60min"));
+//        lectures.add(new Lecture("Ruby 2", "60min"));
+//        lectures.add(new Lecture("Ruby 3", "60min"));
+//
+//        Conference conference = new Conference(lectures);
+//
+//        conference.buildTracks();
+//
+//
+//    }
 
-        Conference conference = new Conference(lectures);
+    //Pegar lista de lectures e colocar nas tracks!!! ------ CORAÇÃO
+
+
+    @Test
+    public void buildTrack() throws FileNotFoundException {
+        //puxando um arquivo e criando uma lista de String
+        InputStream file = new FileInputStream("src/main/res/raw/proposals.txt");
+        ReadFile openFile = new ReadFile();
+        List<String> results = openFile.read(file);
+        List<Lecture> listL = new ArrayList<>();
+//        //DECLARANDO Track para ser adicionada
+        Track trackMorningA = new Track(Track.MORNING_LIMIT);
+        Track trackMorningB = new Track(Track.MORNING_LIMIT);
+//        Track trackAfternoonA = new Track(Track.AFTERNOON_LIMIT);
+//        Track trackAfternoonB = new Track(Track.AFTERNOON_LIMIT);
+
+        //Pegar lista de String e transformar em Lectures para colocar numa lista de Lectures
+        for(String result : results){
+            Lecture lecture = BuildLecture.build(result);
+            listL.add(lecture);
+        }
+
+        Conference conference = new Conference(listL);
 
         conference.buildTracks();
 
+        Lecture palestra1 = new Lecture("Diminuindo tempo de execução de testes em aplicações Rails enterprise", "60min");
+        Lecture palestra2 = new Lecture ("Reinventando a roda em ASP clássico", "45min");
+        Lecture palestra3 = new Lecture("Apresentando Lua para as massas", "30min");
+        Lecture palestra4 = new Lecture("Erros de Ruby oriundos de versões erradas de gems", "45min");
+//        Lecture palestra5 = new Lecture("Erros comuns em Ruby", "45min");
+//        Lecture palestra6 = new Lecture("Rails para usuários de Django", "5min");
+//        Lecture palestra7 = new Lecture("Trabalho remoto: prós e cons", "60min");
+
+        trackMorningA.addLecture(palestra1);
+        trackMorningA.addLecture(palestra2);
+        trackMorningA.addLecture(palestra3);
+        trackMorningA.addLecture(palestra4);
+
+        trackMorningB.addLecture(palestra1);
+        trackMorningB.addLecture(palestra2);
+        trackMorningB.addLecture(palestra3);
+        trackMorningB.addLecture(palestra4);
+
+
+        assertEquals(trackMorningA.getLectures().get(0).getTitle(), conference.getTrackMorningA().getLectures().get(0).getTitle());
+        assertEquals(trackMorningA.getLectures().get(1).getTitle(), conference.getTrackMorningA().getLectures().get(1).getTitle());
+        assertEquals(trackMorningA.getLectures().get(2).getTitle(), conference.getTrackMorningA().getLectures().get(2).getTitle());
+        assertEquals(trackMorningA.getLectures().get(3).getTitle(), conference.getTrackMorningA().getLectures().get(3).getTitle());
+
+//        assertEquals(trackMorningB.getLectures().get(0).getTitle(), conference.getTrackMorningB().getLectures().get(0).getTitle());
+//        assertEquals(trackMorningB.getLectures().get(1).getTitle(), conference.getTrackMorningB().getLectures().get(1).getTitle());
+//        assertEquals(trackMorningB.getLectures().get(2).getTitle(), conference.getTrackMorningB().getLectures().get(2).getTitle());
+//        assertEquals(trackMorningB.getLectures().get(3).getTitle(), conference.getTrackMorningB().getLectures().get(3).getTitle());
 
     }
-
-    @Test
-    public void fromTxtToListOfLectures() throws FileNotFoundException {
-
-        //puxando um arquivo e criando uma lista de String
-        InputStream file = new FileInputStream("src/test/res/proposals.txt");
-        ReadFile openFile = new ReadFile();
-        List<String> results = openFile.read(file);
-
-        //DECLARANDO Track para ser adicionada
-        Track trackManhaA = new Track(Track.MORNING_LIMIT);
-
-        String ShowTitles = null;
-
-        //Pegar lista de String e transformar em Lectures
-        //Pegar lectures e colocar numa lista de Lectures
-        for(String result : results){
-            Lecture lecture = BuildLecture.build(result);
-            trackManhaA.addLecture(lecture);
-            ShowTitles = lecture.getTitle();
-        }
-
-        Track tracktest = new Track(Track.MORNING_LIMIT);
-
-        Lecture l1 = new Lecture("Diminuindo tempo de execução de testes em aplicações Rails enterprise","60min");
-        Lecture l2 = new Lecture("Reinventando a roda em ASP clássico", "45min");
-        tracktest.addLecture(l1);
-        tracktest.addLecture(l2);
-
-        String b = "Reinventando a roda em ASP clássico";
-
-        assertEquals(trackManhaA, tracktest);
-
-
-        //Pegar lista de lectures e colocar nas tracks!!! ------ CORAÇÃO
-
-
-
-    }
-
 
     @Test
     public void deliverTracks(){
@@ -79,7 +96,6 @@ public class ConferenceTest {
         List<Lecture> standby = new ArrayList<>();
 
         Conference conference = new Conference(lectures);
-
 
         //8 PALESTRAS PARA ENCHER DUAS TRACKS, UMA MANHÃ E OUTRA TARDE
         Lecture palestra1 = new Lecture("Ruby 1 - track m", "60min");
@@ -93,27 +109,27 @@ public class ConferenceTest {
 
 
 
-        trackMorning.addLecture(palestra1);
-        trackMorning.addLecture(palestra2);
-        trackMorning.addLecture(palestra4);
-
-        trackAfternoon.addLecture(palestra3);
-        trackAfternoon.addLecture(palestra5);
-        trackAfternoon.addLecture(palestra6);
-        trackAfternoon.addLecture(palestra7);
-        trackAfternoon.addLecture(palestra8);
 
 
-        Boolean adicionou3 = trackMorning.addLecture(palestra3);
-        assertFalse(adicionou3);
+
+        Track trackMorningt = new Track(Track.MORNING_LIMIT);
+        trackMorningt.addLecture(palestra1);
+        trackMorningt.addLecture(palestra2);
+        trackMorningt.addLecture(palestra4);
+
+        Track trackAfternoont = new Track(Track.AFTERNOON_LIMIT);
+        trackAfternoont.addLecture(palestra3);
+        trackAfternoont.addLecture(palestra5);
+        trackAfternoont.addLecture(palestra6);
+        trackAfternoont.addLecture(palestra7);
+        trackAfternoont.addLecture(palestra8);
+
+
+
+
+        trackMorning.equals(trackMorningt);
 
         //PRECISO SABER ONDE ESSA PALESTRA 3 FOI PARAR E SALVAR ELA NO STANDBY
-
-
-
-        conference.buildTracks();
-
-
 
 
     }

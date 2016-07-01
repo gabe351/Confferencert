@@ -4,6 +4,9 @@ import static junit.framework.Assert.*;
 
 import org.junit.Test;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,6 +74,33 @@ public class TracksTest {
         lecturesAdded.add(palestra2);
 
         assertEquals(lecturesAdded, trackManha.getLectures());
+    }
+
+    @Test
+    public void fromTxtToTracks() throws FileNotFoundException {
+
+        //puxando um arquivo e criando uma lista de String
+        InputStream file = new FileInputStream("src/test/res/proposals.txt");
+        ReadFile openFile = new ReadFile();
+        List<String> results = openFile.read(file);
+
+        //DECLARANDO Track para ser adicionada
+        Track trackMorningA = new Track(Track.MORNING_LIMIT);
+
+        //Pegar lista de String e transformar em Lectures para colocar numa lista de Lectures
+        for(String result : results){
+            Lecture lecture = BuildLecture.build(result);
+            trackMorningA.addLecture(lecture);
+        }
+
+        Track tracktest = new Track(Track.MORNING_LIMIT);
+        Lecture l1 = new Lecture("Diminuindo tempo de execução de testes em aplicações Rails enterprise","60min");
+        Lecture l2 = new Lecture("Reinventando a roda em ASP clássico", "45min");
+
+        tracktest.addLecture(l1);
+        tracktest.addLecture(l2);
+
+        assertTrue(trackMorningA.equals(tracktest));
     }
 
 }
