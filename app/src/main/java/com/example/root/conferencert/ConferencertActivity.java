@@ -1,11 +1,19 @@
 package com.example.root.conferencert;
 
+import android.support.annotation.RawRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.List;
+
+import Conferencert.BuildLecture;
 import Conferencert.Conference;
+import Conferencert.Lecture;
+import Conferencert.ReadFile;
 import Conferencert.Track;
 
 public class ConferencertActivity extends AppCompatActivity {
@@ -17,13 +25,25 @@ public class ConferencertActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conferencert);
         configButtons();
-        conference = new Conference(buildTrackOnActivity);
+        conference = new Conference(buildTrackOnActivity());
 
     }
 
-    public Track buildTrackOnActivity(Track t){
-        openFileInput();
-        return t;
+    public List buildTrackOnActivity(){
+
+        InputStream file = getResources().openRawResource(R.raw.proposals);
+        ReadFile openFile = new ReadFile();
+        List<String> results = openFile.read(file);
+
+        //DECLARANDO Track para ser adicionada
+        Track tracks = new Track(Track.MORNING_LIMIT);
+
+        //Pegar lista de String e transformar em Lectures para colocar numa lista de Lectures
+        for(String result : results){
+            Lecture lecture = BuildLecture.build(result);
+            tracks.addLecture(lecture);
+        }
+        return results;
     }
 
     private void configButtons() {
@@ -45,21 +65,6 @@ public class ConferencertActivity extends AppCompatActivity {
     }
 
 
-    public void showTrackMorningA(){
-
-    }
-    public void showTrackAfternoonA(View v){
-        setContentView(R.layout.activity_tracks_screen);
-
-    }
-    public void showTrackMorningB(View v){
-        setContentView(R.layout.activity_tracks_screen);
-
-    }
-    public void showTrackAfternoonB(View v){
-        setContentView(R.layout.activity_tracks_screen);
-
-    }
     public void creaListView(){
 
     }
