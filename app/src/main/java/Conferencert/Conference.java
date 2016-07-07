@@ -15,10 +15,10 @@ public class Conference {
     private final List<Lecture> lectures;
     private Map<Integer, Track> map = new HashMap<Integer, Track>();
 
-    private static final Integer TRACK_MORNING_A   = 0;
-    private static final Integer TRACK_AFTERNOON_A = 1;
-    private static final Integer TRACK_MORNING_B   = 2;
-    private static final Integer TRACK_AFTERNOON_B = 3;
+    public static final Integer TRACK_MORNING_A   = 0;
+    public static final Integer TRACK_AFTERNOON_A = 1;
+    public static final Integer TRACK_MORNING_B   = 2;
+    public static final Integer TRACK_AFTERNOON_B = 3;
 
     public Conference(List<Lecture> lectures) {
         this.lectures = lectures;
@@ -54,8 +54,21 @@ public class Conference {
         return map.get(TRACK_MORNING_A);
     }
 
+    public Track getTrackAfternoonA() {
+        return map.get(TRACK_AFTERNOON_A);
+    }
+
     public Track getTrackMorningB() {
         return map.get(TRACK_MORNING_B);
+    }
+
+    public Track getTrackAfternoonB() {
+        return map.get(TRACK_AFTERNOON_B);
+    }
+
+
+    public Track getTrack(Integer trackKey) {
+        return map.get(trackKey);
     }
 }
 

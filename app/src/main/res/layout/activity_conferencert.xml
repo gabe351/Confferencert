@@ -5,26 +5,101 @@
     android:id="@+id/activity_conferencert"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.root.conferencert.Conferencert">
+    tools:context="com.example.root.conferencert.ConferencertActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pressione o botão para organizar a conferência"
+            android:text="Selecione a track que deseja ver"
             android:gravity="center"
-            android:textSize="24dp"
-            android:layout_weight="1"/>
+            android:textSize="24sp"
+            android:layout_margin="16dp"
+            />
 
-        <Button
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Organizar"
-            android:layout_gravity="center"/>
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:text="Primeiro dia"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginLeft="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/morning_a"
+                android:text="Manhã"
+                android:textSize="16sp"
+                android:layout_margin="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:onClick="showTrack"/>
+
+            <TextView
+                android:id="@+id/afternoon_a"
+                android:text="Tarde"
+                android:textSize="16sp"
+                android:layout_margin="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:onClick="showTrack"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <TextView
+                android:text="Segundo dia"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/morning_b"
+                android:text="Manhã"
+                android:textSize="16sp"
+                android:layout_margin="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:onClick="showTrack"/>
+
+            <TextView
+                android:id="@+id/afternoon_b"
+                android:text="Tarde"
+                android:textSize="16sp"
+                android:layout_margin="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:onClick="showTrack"/>
+
+        </LinearLayout>
     </LinearLayout>
 
 

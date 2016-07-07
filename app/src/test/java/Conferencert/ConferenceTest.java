@@ -42,9 +42,9 @@ public class ConferenceTest {
         List<Lecture> listL = new ArrayList<>();
 //        //DECLARANDO Track para ser adicionada
         Track trackMorningA = new Track(Track.MORNING_LIMIT);
+        Track trackAfternoonA = new Track(Track.AFTERNOON_LIMIT);
         Track trackMorningB = new Track(Track.MORNING_LIMIT);
-//        Track trackAfternoonA = new Track(Track.AFTERNOON_LIMIT);
-//        Track trackAfternoonB = new Track(Track.AFTERNOON_LIMIT);
+        Track trackAfternoonB = new Track(Track.AFTERNOON_LIMIT);
 
         //Pegar lista de String e transformar em Lectures para colocar numa lista de Lectures
         for(String result : results){
@@ -60,30 +60,58 @@ public class ConferenceTest {
         Lecture palestra2 = new Lecture ("Reinventando a roda em ASP clássico", "45min");
         Lecture palestra3 = new Lecture("Apresentando Lua para as massas", "30min");
         Lecture palestra4 = new Lecture("Erros de Ruby oriundos de versões erradas de gems", "45min");
-//        Lecture palestra5 = new Lecture("Erros comuns em Ruby", "45min");
-//        Lecture palestra6 = new Lecture("Rails para usuários de Django", "5min");
-//        Lecture palestra7 = new Lecture("Trabalho remoto: prós e cons", "60min");
+        Lecture palestra5 = new Lecture("Erros comuns em Ruby", "45min");
+        Lecture palestra6 = new Lecture("Rails para usuários de Django", "5min");
+        Lecture palestra7 = new Lecture("Trabalho remoto: prós e cons", "60min");
+        Lecture palestra8 = new Lecture("Desenvolvimento orientado a gambiarras", "45min");
+        Lecture palestra9 = new Lecture("Aplicações isomórficas: o futuro (que talvez nunca chegaremos)", "30min");
+        Lecture palestra10 = new Lecture("Codifique menos, Escreva mais!","30min");
+        Lecture palestra11 = new Lecture("Programação em par","45min");
+        Lecture palestra12 = new Lecture("A mágica do Rails: como ser mais produtivo","60min");
+        Lecture palestra13 = new Lecture("Ruby on Rails: Por que devemos deixá-lo para trás","60min");
+        Lecture palestra14 = new Lecture("Clojure engoliu Scala: migrando minha aplicação","45min");
+        Lecture palestra15 = new Lecture("Ensinando programação nas grotas de Maceió","30min");
+        Lecture palestra16 = new Lecture("Ruby vs. Clojure para desenvolvimento backend","30min");
+        Lecture palestra17 = new Lecture("Manutenção de aplicações legadas em Ruby on Rails","60min");
+        Lecture palestra18 = new Lecture("Um mundo sem StackOverflow","30min");
+        Lecture palestra19 = new Lecture("Otimizando CSS em aplicações Rails","30min");
+
 
         trackMorningA.addLecture(palestra1);
         trackMorningA.addLecture(palestra2);
         trackMorningA.addLecture(palestra3);
         trackMorningA.addLecture(palestra4);
 
-        trackMorningB.addLecture(palestra1);
-        trackMorningB.addLecture(palestra2);
-        trackMorningB.addLecture(palestra3);
-        trackMorningB.addLecture(palestra4);
+        trackAfternoonA.addLecture(palestra5);
+        trackAfternoonA.addLecture(palestra6);
+        trackAfternoonA.addLecture(palestra7);
+        trackAfternoonA.addLecture(palestra8);
+        trackAfternoonA.addLecture(palestra9);
+        trackAfternoonA.addLecture(palestra10);
+
+        trackMorningB.addLecture(palestra11);
+        trackMorningB.addLecture(palestra12);
+        trackMorningB.addLecture(palestra13);
+
+        trackAfternoonB.addLecture(palestra14);
+        trackAfternoonB.addLecture(palestra15);
+        trackAfternoonB.addLecture(palestra16);
+        trackAfternoonB.addLecture(palestra17);
+        trackAfternoonB.addLecture(palestra18);
+        trackAfternoonB.addLecture(palestra19);
 
 
-        assertEquals(trackMorningA.getLectures().get(0).getTitle(), conference.getTrackMorningA().getLectures().get(0).getTitle());
-        assertEquals(trackMorningA.getLectures().get(1).getTitle(), conference.getTrackMorningA().getLectures().get(1).getTitle());
-        assertEquals(trackMorningA.getLectures().get(2).getTitle(), conference.getTrackMorningA().getLectures().get(2).getTitle());
-        assertEquals(trackMorningA.getLectures().get(3).getTitle(), conference.getTrackMorningA().getLectures().get(3).getTitle());
+        for (int i =0;i<3;i++)
+            assertEquals(trackMorningA.getLectures().get(i).getTitle(), conference.getTrackMorningA().getLectures().get(i).getTitle());
 
-//        assertEquals(trackMorningB.getLectures().get(0).getTitle(), conference.getTrackMorningB().getLectures().get(0).getTitle());
-//        assertEquals(trackMorningB.getLectures().get(1).getTitle(), conference.getTrackMorningB().getLectures().get(1).getTitle());
-//        assertEquals(trackMorningB.getLectures().get(2).getTitle(), conference.getTrackMorningB().getLectures().get(2).getTitle());
-//        assertEquals(trackMorningB.getLectures().get(3).getTitle(), conference.getTrackMorningB().getLectures().get(3).getTitle());
+        for (int i =0; i<6; i++)
+            assertEquals(trackAfternoonA.getLectures().get(i).getTitle(), conference.getTrackAfternoonA().getLectures().get(i).getTitle());
+
+        for (int i =0; i<3; i++)
+            assertEquals(trackMorningB.getLectures().get(i).getTitle(), conference.getTrackMorningB().getLectures().get(i).getTitle());
+
+        for (int i =0; i<6; i++)
+            assertEquals(trackAfternoonB.getLectures().get(i).getTitle(), conference.getTrackAfternoonB().getLectures().get(i).getTitle());
 
     }
 
@@ -127,9 +155,7 @@ public class ConferenceTest {
 
 
 
-        trackMorning.equals(trackMorningt);
-
-        //PRECISO SABER ONDE ESSA PALESTRA 3 FOI PARAR E SALVAR ELA NO STANDBY
+        assertTrue(trackMorning.equals(trackMorningt));
 
 
     }
