@@ -1,9 +1,11 @@
 package Conferencert;
 
+import java.io.Serializable;
+
 /**
  * Created by root on 22/06/16.
  */
-public class Lecture {
+public class Lecture implements Serializable{
 
     private String title;
     private String timeStr;

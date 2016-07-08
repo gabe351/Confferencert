@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import Conferencert.Lecture;
 import Conferencert.Track;
 
 /**
@@ -26,15 +30,18 @@ public class showConferencesActivity extends ListActivity {
 
         Intent in= getIntent();
         Bundle b = in.getExtras();
+        List<Lecture> l = new ArrayList<>();
+
+        String[] planets = new String[] { };
 
         if(b!=null)
         {
             Track j = (Track) b.get("Track");
-            title.setText(j.getLectures().size());
+            j.getLectures();
 
         }else{
             String j = "Arquivo está vazio";
             title.setText(j);
         }
-    }
+    }   
 }
