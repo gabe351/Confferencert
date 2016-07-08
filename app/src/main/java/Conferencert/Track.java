@@ -1,5 +1,6 @@
 package Conferencert;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -7,7 +8,7 @@ import java.util.Objects;
 /**
  * Created by root on 23/06/16.
  */
-public class Track {
+public class Track implements Serializable {
     public final static Integer MORNING_LIMIT = 180;
     public final static Integer AFTERNOON_LIMIT = 239;
 
@@ -25,7 +26,7 @@ public class Track {
             l.getTitle();
         }
     }
-    public Integer sumLecturesTimes(Lecture lecture){
+    private Integer sumLecturesTimes(Lecture lecture){
         Integer totalTimes = 0;
         totalTimes += lecture.getTimeInt();
         for (Lecture l : lectures) {

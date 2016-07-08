@@ -1,13 +1,13 @@
 package com.example.root.conferencert;
 
-import android.support.annotation.RawRes;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import Conferencert.BuildLecture;
@@ -26,24 +26,26 @@ public class ConferencertActivity extends AppCompatActivity {
         setContentView(R.layout.activity_conferencert);
         configButtons();
         conference = new Conference(buildTrackOnActivity());
+        conference.buildTracks();
+
 
     }
 
-    public List buildTrackOnActivity(){
+    public List<Lecture> buildTrackOnActivity(){
 
         InputStream file = getResources().openRawResource(R.raw.proposals);
         ReadFile openFile = new ReadFile();
         List<String> results = openFile.read(file);
 
         //DECLARANDO Track para ser adicionada
-        Track tracks = new Track(Track.MORNING_LIMIT);
+        List<Lecture> l = new ArrayList<Lecture>();
 
         //Pegar lista de String e transformar em Lectures para colocar numa lista de Lectures
         for(String result : results){
             Lecture lecture = BuildLecture.build(result);
-            tracks.addLecture(lecture);
+            l.add(lecture);
         }
-        return results;
+        return l;
     }
 
     private void configButtons() {
@@ -62,6 +64,13 @@ public class ConferencertActivity extends AppCompatActivity {
     public void showTrack(View button) {
         Integer trackKey = (Integer)button.getTag();
         Track track = conference.getTrack(trackKey);
+        Intent i = new Intent(this, showConferencesActivity.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("Track", track);
+        i.putExtras(bundle);
+
+        startActivity(i);
     }
 
 
