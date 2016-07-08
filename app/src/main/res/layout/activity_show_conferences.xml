@@ -6,7 +6,7 @@
     >
     <TextView
         android:id="@+id/title"
-        android:text="LEMBRAR DE PEGAR UMA VARIAVEL PARA A O TITULO DA TRACK"
+        android:text="Lectures of this track"
         android:textSize="25sp"
         android:gravity="center"
         android:layout_width="match_parent"
