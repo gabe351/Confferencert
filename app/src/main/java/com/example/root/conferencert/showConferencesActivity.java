@@ -20,32 +20,52 @@ public class showConferencesActivity extends ListActivity {
 
 
     private ListView lectures;
-    private List<String> listL;
+    private List<String> listS;
     private ArrayAdapter<String> adapter;
+    private LectureAdapter lectureAdapter;
+    private List<Lecture> listL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_conferences);
 
-
         lectures = (ListView) findViewById(android.R.id.list);
+        //Initialize our ArrayList
+
+        //Initialize our array adapter notice how it references the listitems.xml layout
+//        lectureAdapter = new LectureAdapter(this, R.layout.activity_show_conferences, listL);
+
+        //Set the above adapter as the adapter of choice for our list
+//        lectures.setAdapter(lectureAdapter);
+
 
         Intent in= getIntent();
         Bundle b = in.getExtras();
-        List<Lecture> l = new ArrayList<>();
-
-
 
         if(b!=null)
         {
             Track j = (Track) b.get("Track");
-            j.getLectures();
+            listL = j.getLectures();
 
 
         }else{
             String j = "Arquivo está vazio";
 
         }
+
+//        lectures.addView(findViewById(R.id.afternoon_a));
+
+        //Criamos nossa lista que preenchera o ListView
+//        Lecture palestra1 = new Lecture("Palestra 10", "50min");
+//        listL.add(palestra1);
+
+            //Cria o adapter
+            lectureAdapter = new LectureAdapter(this, R.layout.activity_show_conferences, listL);
+            //Define o Adapter
+            lectures.setAdapter(lectureAdapter);
+
+
+
     }
 }
