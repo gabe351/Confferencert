@@ -16,11 +16,11 @@ import Conferencert.Lecture;
  */
 public class recyclerLectureAdapter extends RecyclerView.Adapter {
 
-    private List<Lecture> l;
+    private List<Lecture> listL;
     private Context context;
 
-    public recyclerLectureAdapter(List<Lecture> l, Context context){
-        this.l = l;
+    public recyclerLectureAdapter(List<Lecture> listL, Context context){
+        this.listL = listL;
         this.context = context;
     }
     @Override
@@ -36,11 +36,15 @@ public class recyclerLectureAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
+        NossoViewHolder h = (NossoViewHolder) holder;
+        Lecture lecture = listL.get(position);
+        h.comboOfLectures.setText(lecture.getTitle() + " - "  +lecture.getTimeStr());
+
     }
 
     @Override
     public int getItemCount() {
-        return l.size();
+        return listL.size();
     }
     public class NossoViewHolder extends RecyclerView.ViewHolder{
 

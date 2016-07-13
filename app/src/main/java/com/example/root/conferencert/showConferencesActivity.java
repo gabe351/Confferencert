@@ -4,9 +4,10 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import java.util.List;
 
@@ -16,21 +17,20 @@ import Conferencert.Track;
 /**
  * Created by root on 06/07/16.
  */
-public class showConferencesActivity extends ListActivity {
+public class showConferencesActivity extends AppCompatActivity {
 
 
     private ListView lectures;
-    private LectureAdapter lectureAdapter;
     private List<Lecture> listL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_conferences);
+        setContentView(R.layout.activity_with_recylerview);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        lectures = (ListView) findViewById(android.R.id.list);
 
         Intent in= getIntent();
         Bundle b = in.getExtras();
@@ -48,10 +48,7 @@ public class showConferencesActivity extends ListActivity {
 
         };
 
-            //Cria o adapter
-            lectureAdapter = new LectureAdapter(this, R.layout.activity_show_conferences, listL);
-            //Define o Adapter
-            lectures.setAdapter(lectureAdapter);
+        recyclerView.setAdapter(new recyclerLectureAdapter(listL, this));
 
     }
     public void lecturesD(View v){
