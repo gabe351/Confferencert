@@ -36,7 +36,6 @@ public class Track implements Serializable {
         return totalTimes;
     }
 
-
     public Boolean addLecture(Lecture lecture) {
         if(sumLecturesTimes(lecture) <= limit){
             lectures.add(lecture);

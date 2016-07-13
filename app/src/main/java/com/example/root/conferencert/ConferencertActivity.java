@@ -1,5 +1,6 @@
 package com.example.root.conferencert;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,12 +23,18 @@ public class ConferencertActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conferencert);
         configButtons();
         conference = new Conference(buildTrackOnActivity());
         conference.buildTracks();
 
+        AlertDialog.Builder caixaAlerta = new AlertDialog.Builder(this);
+        caixaAlerta.setTitle("SEJA BEM VINDO A APLICAÇÃO");
+        caixaAlerta.setMessage("Conferencert é um app que gerencia seu evento, clique nos turnos e serão mostradas as respectivas palestras");
+        caixaAlerta.setNeutralButton("ok", null);
+        caixaAlerta.show();
 
     }
 
@@ -49,6 +56,7 @@ public class ConferencertActivity extends AppCompatActivity {
     }
 
     private void configButtons() {
+
         TextView morningA  = (TextView) findViewById(R.id.morning_a);
         TextView afternonA = (TextView) findViewById(R.id.afternoon_a);
         TextView morningB  = (TextView) findViewById(R.id.morning_b);
@@ -71,10 +79,5 @@ public class ConferencertActivity extends AppCompatActivity {
         i.putExtras(bundle);
 
         startActivity(i);
-    }
-
-
-    public void creaListView(){
-
     }
 }

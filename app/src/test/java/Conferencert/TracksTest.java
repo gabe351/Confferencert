@@ -89,6 +89,7 @@ public class TracksTest {
 
         //Pegar lista de String e transformar em Lectures para colocar numa lista de Lectures
         for(String result : results){
+
             Lecture lecture = BuildLecture.build(result);
             trackMorningA.addLecture(lecture);
         }
@@ -97,10 +98,9 @@ public class TracksTest {
         Lecture l1 = new Lecture("Diminuindo tempo de execução de testes em aplicações Rails enterprise","60min");
         Lecture l2 = new Lecture("Reinventando a roda em ASP clássico", "45min");
 
-
         tracktest.addLecture(l1);
         tracktest.addLecture(l2);
-        //ARRUMAR O MÉTODO EQUALS!!
+
         assertTrue(trackMorningA.equals(tracktest));
     }
 

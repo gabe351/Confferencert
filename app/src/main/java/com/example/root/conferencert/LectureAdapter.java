@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import java.util.List;
@@ -18,11 +16,11 @@ import Conferencert.Lecture;
  */
 
 public class LectureAdapter extends ArrayAdapter<Lecture> {
+
+    private Context context;
     private LayoutInflater mInflater;
     private List<Lecture> itens;
     private int resource;
-    String response;
-    Context context;
 //    initialize adapter
     public LectureAdapter(Context context, int resource, List<Lecture> items) {
         super(context, resource, items);
@@ -38,34 +36,33 @@ public class LectureAdapter extends ArrayAdapter<Lecture> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
+        View view;
+        ViewHolder holder = null;
+
+        if( convertView == null) {
+//            view = mInflater.from(context).inflate(R.layout.item_listview, parent, false);
+            view = mInflater.inflate(R.layout.item_listview, null);
+            holder = new ViewHolder(view);
+            view.setTag(holder);
+        } else {
+            view = convertView;
+        }
+
         //Get the current Lecture
         Lecture l = getItem(position);
-        convertView = mInflater.inflate(R.layout.item_listview, null);
-        ((TextView) convertView.findViewById(R.id.text)).setText(l.getTitle());
-
-
-//        if(convertView==null)
-//        {
-//            contentOfScreen = new LinearLayout(getContext());
-//            String inflater = Context.LAYOUT_INFLATER_SERVICE;
-//            LayoutInflater vi;
-//            vi = (LayoutInflater)getContext().getSystemService(inflater);
-//            vi.inflate(resource, contentOfScreen, true);
-//        }
-//        else
-//        {
-//            contentOfScreen = (LinearLayout) convertView;
-//        }
-
-//        Get the text boxes from the listitem.xml file
-//        TextView alertText =(TextView)alertView.findViewById(R.id.txtAlertText);
-//        TextView alertDate =(TextView)alertView.findViewById(R.id.txtAlertDate);
-//
-//        //Assign the appropriate data from our alert object above
-//        alertText.setText(al.alerttext);
-//        alertDate.setText(al.alertdate);
-
-        return convertView;
+        holder.comboOfLectures.setText(l.getTitle() + " - "  +l.getTimeStr());
+//        ((TextView) view.findViewById(R.id.text)).setText(l.getTitle() + " - "  +l.getTimeStr());
+        return view;
     }
 
+    public static class ViewHolder{
+
+        final TextView comboOfLectures;
+
+        public ViewHolder(View v) {
+
+            comboOfLectures = (TextView) v.findViewById(R.id.text);
+        }
+
+    }
 }
