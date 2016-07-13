@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -26,6 +27,8 @@ public class showConferencesActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_conferences);
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler);
 
         lectures = (ListView) findViewById(android.R.id.list);
 

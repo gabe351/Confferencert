@@ -40,18 +40,20 @@ public class LectureAdapter extends ArrayAdapter<Lecture> {
         ViewHolder holder = null;
 
         if( convertView == null) {
-//            view = mInflater.from(context).inflate(R.layout.item_listview, parent, false);
+
             view = mInflater.inflate(R.layout.item_listview, null);
             holder = new ViewHolder(view);
             view.setTag(holder);
+
         } else {
+
             view = convertView;
         }
 
         //Get the current Lecture
         Lecture l = getItem(position);
         holder.comboOfLectures.setText(l.getTitle() + " - "  +l.getTimeStr());
-//        ((TextView) view.findViewById(R.id.text)).setText(l.getTitle() + " - "  +l.getTimeStr());
+
         return view;
     }
 
