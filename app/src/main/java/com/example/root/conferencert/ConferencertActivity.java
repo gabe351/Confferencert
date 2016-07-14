@@ -30,11 +30,6 @@ public class ConferencertActivity extends AppCompatActivity {
         conference = new Conference(buildTrackOnActivity());
         conference.buildTracks();
 
-        AlertDialog.Builder caixaAlerta = new AlertDialog.Builder(this);
-        caixaAlerta.setTitle("SEJA BEM VINDO A APLICAÇÃO");
-        caixaAlerta.setMessage("Conferencert é um app que gerencia seu evento, clique nos turnos e serão mostradas as respectivas palestras");
-        caixaAlerta.setNeutralButton("ok", null);
-        caixaAlerta.show();
 
     }
 
@@ -79,5 +74,13 @@ public class ConferencertActivity extends AppCompatActivity {
         i.putExtras(bundle);
 
         startActivity(i);
+    }
+
+    public void wellcomeDialog(){
+        AlertDialog.Builder caixaAlerta = new AlertDialog.Builder(this);
+        caixaAlerta.setTitle("SEJA BEM VINDO A APLICAÇÃO");
+        caixaAlerta.setMessage("Conferencert é um app que gerencia seu evento, clique nos turnos e serão mostradas as respectivas palestras");
+        caixaAlerta.setNeutralButton("ok", null);
+        caixaAlerta.show();
     }
 }
