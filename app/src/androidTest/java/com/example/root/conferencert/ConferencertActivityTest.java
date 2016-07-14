@@ -3,6 +3,8 @@ package com.example.root.conferencert;
 import android.support.test.filters.SmallTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerViewAccessibilityDelegate;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -43,6 +45,13 @@ public class ConferencertActivityTest {
         onView(withId(R.id.recycler))
                 .perform(swipeUp())
                 .check(matches(isDisplayed()));
+    }
+    @Test
+    public void recyclerViewTests(){
+//        onView(R.id.recycler).perform(
+//
+//                .actionOnItemAtPosition(5, click());
+//        );
     }
 //    @Test
 //    public void test_MainActivityChangeTextView_hi() throws Exception{
