@@ -19,6 +19,7 @@
             android:parentActivityName=".ConferencertActivity"
             android:label="Stant">
         </activity>
+        <activity android:name=".NewActivity"/>
     </application>
 
 </manifest>

@@ -20,7 +20,7 @@ import Conferencert.Track;
 public class showConferencesActivity extends AppCompatActivity {
 
 
-    private ListView lectures;
+
     private List<Lecture> listL;
 
     @Override
@@ -46,7 +46,7 @@ public class showConferencesActivity extends AppCompatActivity {
 
             String j = "Arquivo está vazio";
 
-        };
+        }
 
         recyclerView.setAdapter(new recyclerLectureAdapter(listL, this));
 

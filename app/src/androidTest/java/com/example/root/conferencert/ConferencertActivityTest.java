@@ -47,6 +47,13 @@ public class ConferencertActivityTest {
                 .check(matches(isDisplayed()));
     }
     @Test
+    public void dialogOpen(){
+        onView(withId(R.id.afternoon_b))
+                .perform(click());
+        onView(withId(R.id.recycler))
+                .perform(click());
+    }
+    @Test
     public void recyclerViewTests(){
 //        onView(R.id.recycler).perform(
 //

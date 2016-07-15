@@ -16,20 +16,30 @@ import Conferencert.Conference;
 import Conferencert.Lecture;
 import Conferencert.ReadFile;
 import Conferencert.Track;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ConferencertActivity extends AppCompatActivity {
 
     Conference conference;
 
+    @BindView(R.id.morning_a) TextView morningA;
+    @BindView(R.id.afternoon_a) TextView afternonA;
+    @BindView(R.id.morning_b) TextView morningB;
+    @BindView(R.id.afternoon_b) TextView afternonB;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conferencert);
+        ButterKnife.bind(this);
+
         configButtons();
+
         conference = new Conference(buildTrackOnActivity());
         conference.buildTracks();
-
 
     }
 
@@ -52,18 +62,13 @@ public class ConferencertActivity extends AppCompatActivity {
 
     private void configButtons() {
 
-        TextView morningA  = (TextView) findViewById(R.id.morning_a);
-        TextView afternonA = (TextView) findViewById(R.id.afternoon_a);
-        TextView morningB  = (TextView) findViewById(R.id.morning_b);
-        TextView afternonB = (TextView) findViewById(R.id.afternoon_b);
-
         morningA.setTag(Conference.TRACK_MORNING_A);
         afternonA.setTag(Conference.TRACK_AFTERNOON_A);
         morningB.setTag(Conference.TRACK_MORNING_B);
         afternonB.setTag(Conference.TRACK_AFTERNOON_B);
     }
 
-
+    @OnClick({R.id.morning_a, R.id.morning_b, R.id.afternoon_a, R.id.afternoon_b})
     public void showTrack(View button) {
         Integer trackKey = (Integer)button.getTag();
         Track track = conference.getTrack(trackKey);

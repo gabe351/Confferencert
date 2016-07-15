@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import Conferencert.Lecture;
+import butterknife.ButterKnife;
 
 /**
  * Created by root on 13/07/16.
